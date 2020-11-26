@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Autores</h1>
+    <p>Autores registrados</p>
+
+    <table>
+      <thead>
+        <th>Nombre</th>
+        <th>Nacionalidad</th>
+        <th>Accion</th>
+      </thead>
+
+      <tbody>
+        {% for autor in autores %}
+          <tr>
+            <td>{{ autor.nombre }}</td>
+            <td>{{ autor.nacionalidad }}</td>
+            <td>
+              <a href="{% url 'biblioteca:lista_libros_autor' autor.pk %}">Ver</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <ul>
+
+    </ul>
+  </body>
+</html>

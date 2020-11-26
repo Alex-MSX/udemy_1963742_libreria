@@ -1,0 +1,56 @@
+APPS
+django-admin startapp name_app
+Dentro de settings.py agregar la app_name a aplicaciones instaladas
+NOTA: puedo agrupar todas mis apps dentro de una carpeta llamada apps
+
+URLS GENERAL
+Puedo agregar cada app.urls con el comando sin importar tener varias apps y todas empezar con vacío
+path('', include('apps.app1_name.urls'))
+path('', include('apps.app2_name.urls'))
+...
+
+URLS INDIVIDUAL
+Agregar el nombre de la app con el parametro
+app_name = 'app_name'
+
+ENLACES
+
+Para crear un enlace utilizo
+{% url '<urls>app_name:<urls>name' %}
+
+Cuando la URL requiere un parámetro. 
+{% url '<urls>app_name:<urls>name' obj.param %}
+
+MODELS
+Puedo definir como se llama la tabla en el admin con la clase
+class Meta:
+        verbose_name_plural = "Autores"
+
+Cuando tengo bases de datos relacionadas, si tengo una relación n -> oo puedo definir el parametro related_name para hacer una búsqueda más simple
+Cliente: (n)
+Poliza: (oo) campo cliente = ForeignKey(Cliente, related_name='polizas')
+polizas = Cliente.polizas.all()
+
+Poliza: (n)
+Recibos: (oo) campo poliza = ForeignKey(Poliza, related_name='recibos')
+recibos = Poliza.recibos.all()
+
+ADMIN
+Puedo modificar la apariencia de mi admin agregando las clases
+
+class <Model>Admin(admin.ModelAdmin):
+    list_display = ('campo1', 'campo2', ... , 'campoN')
+    search_fields = ('campo1', 'campo2', ... , 'campoN')
+    list_filter = ('campo1', 'campo2', ... , 'campoN')
+
+VIEWS
+Al utilizar listas basadas en clase, necesito cumplir los mínimos requerimientos (*opcionales)
+
+TemplateView
+- template_name: url de la template donde realizará el render de la información
+
+ListView
+- template_name: url de la template donde realizará el render de la información
+- model/queryset: cuando deseo listar todos los objetos del modelo relacionado / personalizar la consulta
+- context_object_name: como defino el nombre del objeto del model/queryset que pasa a la plantilla
+* paginate_by: cuando deseamos crear paginación

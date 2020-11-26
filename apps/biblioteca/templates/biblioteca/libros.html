@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <h1>Libros</h1>
+    <p>Libros Registrados</p>
+    <ul>
+      {% for libro in libros %}
+        <li>{{ libro }}</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <p>Está seguro que desea eliminar el autor {{ autor.nombre }}</p>
+
+    <form method="post">
+      {% csrf_token %}
+      <a href="{% url 'biblioteca:lista_autores' %}">Cancelar</a>
+      <input type="submit" value="Aceptar">
+    </form>
+
+  </body>
+</html>

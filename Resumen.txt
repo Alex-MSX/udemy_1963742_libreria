@@ -18,7 +18,7 @@ ENLACES
 Para crear un enlace utilizo
 {% url '<urls>app_name:<urls>name' %}
 
-Cuando la URL requiere un parámetro. 
+Cuando la URL requiere un parámetro.
 {% url '<urls>app_name:<urls>name' obj.param %}
 
 MODELS
@@ -48,9 +48,35 @@ Al utilizar listas basadas en clase, necesito cumplir los mínimos requerimiento
 
 TemplateView
 - template_name: url de la template donde realizará el render de la información
+*
 
 ListView
 - template_name: url de la template donde realizará el render de la información
 - model/queryset: cuando deseo listar todos los objetos del modelo relacionado / personalizar la consulta
 - context_object_name: como defino el nombre del objeto del model/queryset que pasa a la plantilla
 * paginate_by: cuando deseamos crear paginación
+
+CreateView
+- template_name: url de la template donde realizará el render de la información
+- model: modelo relacionado con el objeto a crear
+- fields: que campos vamos a solicitar capturar
+- success_url: a qué página redirigirse cuando el proceso sea realizado con éxito
+
+UpdateView
+- template_name: url de la template donde realizará el render de la información
+- model: modelo relacionado con el objeto a crear
+- fields: que campos vamos a solicitar capturar
+- success_url: a qué página redirigirse cuando el proceso sea realizado con éxito
+NOTA: El objeto que se pasa al template es un form
+
+DeleteView
+- template_name: url de la template donde realizará el render de la información
+- model: modelo relacionado con el objeto a crear
+- fields: que campos vamos a solicitar capturar
+- success_url: a qué página redirigirse cuando el proceso sea realizado con éxito
+NOTA: El objeto que se pasa al template es el modelo en minúscula
+
+NOTA FINAL: Cuando utilizar TemplateView o ListView
+TemplateView: cuando mi contexto requiere listar junto con el objeto "padre" (Ej: un cliente y un listado de pólizas)
+ListView: cuando mi contexto solo tiene que listar sin el objeto "padre". (Ej: un listado de polizas)
+Puedo hacerlo con ListView enviando como contexto el objeto "padre" y tener un related_name para poder llamar a sus "hijos"

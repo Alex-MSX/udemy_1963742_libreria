@@ -7,6 +7,7 @@
   <body>
     <h1>Autores</h1>
     <p>Autores registrados</p>
+    <a href="{% url 'biblioteca:agregar_autor' %}">Agregar Autor</a>
 
     <table>
       <thead>
@@ -21,7 +22,9 @@
             <td>{{ autor.nombre }}</td>
             <td>{{ autor.nacionalidad }}</td>
             <td>
-              <a href="{% url 'biblioteca:lista_libros_autor' autor.pk %}">Ver</a>
+              <a href="{% url 'biblioteca:editar_autor' autor.pk %}">Editar</a>
+              <a href="{% url 'biblioteca:lista_libros_autor' autor.pk %}">Ver libros</a>
+              <a href="{% url 'biblioteca:eliminar_autor' autor.pk %}">Eliminar</a>
             </td>
           </tr>
         {% endfor %}

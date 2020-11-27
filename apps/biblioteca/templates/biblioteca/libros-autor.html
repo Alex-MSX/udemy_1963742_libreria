@@ -6,20 +6,28 @@
   </head>
   <body>
     <h1>Libros</h1>
-    <p>Libros Publicados de</p>
+
+    <p>Libros Publicados de {{ autor.nombre }} {{ autor.pk }}</p>
+
+    <a href="{% url 'biblioteca:agregar_libro' pk=autor.pk %}">Agregar Libro</a>
+
     <table>
       <thead>
         <th>ID</th>
         <th>Titulo</th>
         <th>Autor</th>
+        <th>Accion</th>
       </thead>
 
       <tbody>
-        {% for libro in libros %}
+        {% for libro in autor.libros.all %}
           <tr>
             <td>{{ libro.id }}</td>
             <td>{{ libro.titulo }}</td>
             <td>{{ libro.autor.nombre }}</td>
+            <td>
+              <a href="#">Editar</a>
+            </td>
           </tr>
         {% endfor %}
       </tbody>
